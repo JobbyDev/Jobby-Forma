@@ -1,0 +1,93 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title "Les Prosuits"  %}
+
+{% block body %}
+    <!-- BEGIN #content -->
+    <div id="content" class="app-content">
+        <!-- BEGIN page-header -->
+        <h1 class="page-header">Tous les Produits <small>...</small></h1>
+        <!-- END page-header -->
+        <!-- BEGIN panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Tous Les Produits</h4>
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="example-wrapper">
+                    <div class="container mt-4">
+
+                        <h1>Gérer les Produits</h1>
+
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nomination</th>
+                                <th>Produit</th>
+                                <th>Fournisseur</th>
+                                <th>Reference</th>
+                                <th>Rangemant</th>
+                                <th>Stock Min</th>
+                                <th>Stock Initiale</th>
+                                <th>Numéro De Lot</th>
+                                <th>Péremption</th>
+                                <th>Defalcation </th>
+                                <th>Gestion <i class="icon-settings"></i></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for product in products%}
+                                <tr>
+                                    <td>{{ product.nomination }}</td>
+                                    <td>{{ product.produit }}</td>
+                                    <td>{{ product.fournisseur }}</td>
+                                    <td>{{ product.reference }}</td>
+                                    <td>{{ product.rangement }}</td>
+                                    <td>{{ product.stockMin }}</td>
+                                    <td>{{ product.stockReel }}</td>
+                                    <td>{{ product.numeroDeLot }}</td>
+                                    <td>{{ product.peremption }}</td>
+                                    <td>{{ product.defalcation }}</td>
+                                    <td>
+                                        <a href="{{ path('admin.product.edit', {id: product.id}) }}"><i class="icon-pencil"></i></a>
+                                          /
+                                        <form method="post" action="{{ path('admin.product.delete', {id: product.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                                            <button class="btn btn-danger btn-close" ><i class="icon-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- pagination -->
+                        <div class="pagination mt-4">
+                            <div class="page-item disabled"><a href="#" class="page-link">«</a></div>
+                            <div class="page-item active"><a href="#" class="page-link">1</a></div>
+                            <div class="page-item"><a href="#" class="page-link">2</a></div>
+                            <div class="page-item"><a href="#" class="page-link">3</a></div>
+                            <div class="page-item"><a href="#" class="page-link">4</a></div>
+                            <div class="page-item"><a href="#" class="page-link">5</a></div>
+                            <div class="page-item"><a href="#" class="page-link">»</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END panel -->
+    </div>
+    <!-- END #content -->
+{% endblock %}

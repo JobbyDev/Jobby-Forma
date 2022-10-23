@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.preleve, 'Prélèvement')}}
+            {{ form_errors(form.preleve,) }}
+            {{ form_widget(form.preleve, {'attr': {'class': 'form-control', 'id':'title', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.defalcation, 'Défalcation')}}
+            {{ form_errors(form.defalcation) }}
+            {{ form_widget(form.defalcation, {'attr': {'class': 'form-control', 'id':'hat', 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+{{ form_rest(form) }}
+<button class="btn btn-primary mt-4">{{ button|default('Enregistrer') }}</button>

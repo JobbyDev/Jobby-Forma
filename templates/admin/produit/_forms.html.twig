@@ -1,0 +1,67 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.nomination, 'Nomination')}}
+            {{ form_errors(form.nomination) }}
+            {{ form_widget(form.nomination, {'attr': {'class': 'form-control', 'id':'title', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.produit, 'Produit')}}
+            {{ form_errors(form.produit) }}
+            {{ form_widget(form.produit, {'attr': {'class': 'form-control', 'id':'hat', 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.fournisseur, 'Fournisseur')}}
+            {{ form_errors(form.fournisseur) }}
+            {{ form_widget(form.fournisseur, {'attr': {'class': 'form-control', 'id':'title', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.reference, 'Référence')}}
+            {{ form_errors(form.reference) }}
+            {{ form_widget(form.reference, {'attr': {'class': 'form-control', 'id':'hat', 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.rangement, 'Rangement')}}
+            {{ form_errors(form.rangement) }}
+            {{ form_widget(form.rangement, {'attr': {'class': 'form-control', 'id':'title', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.stockReel, 'Stock Réél')}}
+            {{ form_errors(form.stockReel) }}
+            {{ form_widget(form.stockReel, {'attr': {'class': 'form-control', 'id':'hat', 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.numeroDeLot, 'Numéro De Lot')}}
+            {{ form_errors(form.numeroDeLot) }}
+            {{ form_widget(form.numeroDeLot, {'attr': {'class': 'form-control', 'id':'title', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.peremption, 'Peremption')}}
+            {{ form_errors(form.peremption) }}
+            {{ form_widget(form.peremption, {'attr': {'class': 'form-control', 'id':'hat', 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+{{ form_rest(form) }}
+<button class="btn btn-primary mt-4">{{ button|default('Enregistrer') }}</button>
