@@ -27,6 +27,7 @@ class AdminController extends AbstractController
     public function index(): Response
     {
         return $this->render('admin/index.html.twig', [
+            'mainNavAdmin'      => true,
         ]);
     }
 
@@ -54,7 +55,6 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $this->em->persist($product);
             $this->em->flush();
             $this->addFlash('succes', 'L\'Article a bien été créé avec succès');
             return $this->redirectToRoute("admin.products");

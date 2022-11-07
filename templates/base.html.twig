@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Color Admin | Support Forum Front End Theme</title>
+    <title>{% block title %}{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
     {% block stylesheets %}
-    <!-- ================== BEGIN core-css ================== -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <link href="/assets/assets/css/forum/vendor.min.css" rel="stylesheet" />
-    <link href="/assets/assets/css/forum/app.min.css" rel="stylesheet" />
+        <!-- ================== BEGIN core-css ================== -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+        <link href="/assets/assets/css/forum/vendor.min.css" rel="stylesheet" />
+        <link href="/assets/assets/css/forum/app.min.css" rel="stylesheet" />
+        <link href="/assets/assets/plugins/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
     {% endblock %}
 </head>
@@ -21,11 +22,17 @@
     <div class="container">
         <!-- begin navbar-brand -->
         <a href="index.html" class="navbar-brand">
-            <span class="brand-logo"></span>
             <span class="brand-text">
 					Support Forum
 				</span>
         </a>
+        <div>
+            <lu>
+                <li class="nav {% if mainNavHome is defined %}active{% endif %}">
+                    <a href="">Home</a>
+                </li>
+            </lu>
+        </div>
         <!-- end navbar-brand -->
         <!-- begin navbar-toggle -->
         <button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#header-navbar">
@@ -37,7 +44,7 @@
         <!-- begin #header-navbar -->
         <div class="collapse navbar-collapse" id="header-navbar">
             <ul class="nav navbar-nav navbar-end">
-                <li>
+                <li >
                     <form class="navbar-form">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Enter Keywords..." />
@@ -45,8 +52,22 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="javascript:;">Create Account</a></li>
-                <li><a href="javascript:;">Sign In</a></li>
+                {% if is_granted('ROLE_USER') %}
+
+                    <li>
+                        <a href="{{ path('index.user') }}"><i class="icon-logout"> Ton espace: {{ user.firstname }} {{ user.lastname }} /</i></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_logout') }}"><i class="icon-logout">Deconnecter</i></a>
+                    </li>
+                {% else %}
+                    <li class="{% if mainNavRegidtrtion is defined %}active{% endif %}">
+                        <a href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                    <li class="{% if mainNavLogin is defined %}active{% endif %}">
+                        <a href="{{ path('app_login')}}">Connecter</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         <!-- end #header-navbar -->

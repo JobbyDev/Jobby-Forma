@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+    <br><br><br>
+    <!-- BEGIN #checkout-info -->
+    <div class="section-container mt-4" id="checkout-info">
+        <!-- BEGIN container -->
+        <div class="container">
+            <!-- BEGIN checkout -->
+            <div class="checkout">
+                <!-- BEGIN checkout-header -->
+                <div class="checkout-header">
+                    <!-- BEGIN row -->
+                    <div class="row">
+                        <!-- BEGIN col-3 -->
+                        <div class="col-lg-6">
+                            <div class="step active">
+                                <a href="#">
+                                    <div class="number">
+                                        <h1>Mot de Passe Oublié</h1>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- END col-3 -->
+                    </div>
+                    <!-- END row -->
+                </div>
+                <!-- END checkout-header -->
+                <!-- BEGIN checkout-body -->
+                <div class="checkout-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_start(resetForm) }}
+                                {{ form_label(resetForm.plainPassword.first, 'Mot de passe') }}
+                                {{ form_errors(resetForm.plainPassword.first) }}
+                                {{ form_widget(resetForm.plainPassword.first, { 'attr': {'class': 'form-control', 'id': 'password', 'required': 'required', 'placeholder': 'Entrer votre mot de passe' }}) }}
+                                {{ form_label(resetForm.plainPassword.second, 'Confirmation de votre mot de passe') }}
+                                {{ form_errors(resetForm.plainPassword.second) }}
+                                {{ form_widget(resetForm.plainPassword.second, { 'attr': {'class': 'form-control', 'id': 'password', 'required': 'required', 'placeholder': 'Comfirmer votre mot de passe' }}) }}
+                                <div>
+                                    <small>
+                                        Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                                    </small>
+                                </div>
+                                <br><br><br>
+                                <button class="btn btn-lg btn-primary btn-dark btn-theme ms-10px mt-4">Changer le Mot de passe </button>
+                                {{ form_end(resetForm) }}
+
+                                {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                                #}
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <!-- END checkout-body -->
+                <!-- BEGIN checkout-footer -->
+                <!-- END checkout-footer -->
+            </div>
+            <!-- END checkout -->
+        </div>
+        <!-- END container -->
+    </div>
+    <!-- END #checkout-info -->
+{% endblock %}

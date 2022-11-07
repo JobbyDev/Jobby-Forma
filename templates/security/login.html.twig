@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <br><br><br>
+    <!-- BEGIN #checkout-info -->
+    <div class="section-container mt-4" id="checkout-info">
+        <!-- BEGIN container -->
+        <div class="container">
+            <!-- BEGIN checkout -->
+            <div class="checkout">
+                <!-- BEGIN checkout-header -->
+                <div class="checkout-header">
+                    <!-- BEGIN row -->
+                    <div class="row">
+                        <!-- BEGIN col-3 -->
+                        <div class="col-lg-6">
+                            <div class="step active">
+                                <div class="number">
+                                    <h1>Connecter</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END col-3 -->
+                    </div>
+                    <!-- END row -->
+                </div>
+                <!-- END checkout-header -->
+                <!-- BEGIN checkout-body -->
+                <div class="checkout-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                                #}
+
+                                <button class="btn btn-lg btn-primary btn-dark btn-theme ms-10px mt-4" type="submit">
+                                    CONTINUE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <!-- END checkout-body -->
+                <!-- BEGIN checkout-footer -->
+                <p><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a> / <a href="{{ path('app_register') }}">Créer un compte</a></p>
+                <!-- END checkout-footer -->
+            </div>
+            <!-- END checkout -->
+        </div>
+        <!-- END container -->
+    </div>
+    <!-- END #checkout-info -->
+</form>
+{% endblock %}

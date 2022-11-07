@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <br><br><br>
+    <!-- BEGIN #checkout-info -->
+    <div class="section-container mt-4" id="checkout-info">
+        <!-- BEGIN container -->
+        <div class="container">
+            <!-- BEGIN checkout -->
+            <div class="checkout">
+                <!-- BEGIN checkout-header -->
+                <div class="checkout-header">
+                    <!-- BEGIN row -->
+                    <div class="row">
+                        <!-- BEGIN col-3 -->
+                        <div class="col-lg-6">
+                            <div class="step active">
+                                <a href="#">
+                                    <div class="number">
+                                        <h1>Mot de Passe Oublié</h1>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- END col-3 -->
+                    </div>
+                    <!-- END row -->
+                </div>
+                <!-- END checkout-header -->
+                <!-- BEGIN checkout-body -->
+                <div class="checkout-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_start(requestForm) }}
+                                {{ form_label(requestForm.email, 'Votre adresse email') }}
+                                {{ form_errors(requestForm.email) }}
+                                {{ form_widget(requestForm.email, { 'attr': {'class': 'form-control', 'id': 'email', 'required': 'required', 'placeholder': 'Exemple: jobby@gmail.com' }}) }}
+                                <div>
+                                    <small>
+                                        Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                                    </small>
+                                </div>
+                                <br><br><br>
+                                <button class="btn btn-lg btn-primary btn-dark btn-theme ms-10px mt-4">Changer le Mot de passe </button>
+                                {{ form_end(requestForm) }}
+
+                                {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                                #}
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <!-- END checkout-body -->
+                <!-- BEGIN checkout-footer -->
+                <!-- END checkout-footer -->
+            </div>
+            <!-- END checkout -->
+        </div>
+        <!-- END container -->
+    </div>
+    <!-- END #checkout-info -->
+
+
+{% endblock %}
